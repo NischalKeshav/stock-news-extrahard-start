@@ -1,21 +1,22 @@
 import requests #Library for API
 import json
 from datetime import date
-print (date.today())
+
 STOCKLIST = ["TSLA"]
 COMPANY_NAME = "Tesla Inc"
-
+Day = str(date.today())
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-def summaryForStock(Stock_name):
+def summaryForStock(Stock_name,Day=Day):
     url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+Stock_name+"&apikey=SYKHTBB9KVN8TYH2"
     print(url)
+    Day = str(date.today())
     Stock_dataREQUEST=requests.get(url)
     Stock_data= Stock_dataREQUEST.json()
     Stock_data = Stock_data["Time Series (Daily)"]
-    Stock_data = Stock_data["2023-01-31"]
-    print(Stock_data)
-summaryForStock("TSLA")
+    Stock_data = Stock_data[Day]
+    return Stock_data
+print(summaryForStock("TSLA"))
 
 
 
