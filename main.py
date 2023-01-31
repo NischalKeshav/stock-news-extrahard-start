@@ -1,5 +1,7 @@
 import requests #Library for API
 import json
+from datetime import date
+print (date.today())
 STOCKLIST = ["TSLA"]
 COMPANY_NAME = "Tesla Inc"
 
@@ -10,7 +12,8 @@ def summaryForStock(Stock_name):
     print(url)
     Stock_dataREQUEST=requests.get(url)
     Stock_data= Stock_dataREQUEST.json()
-    Stock_data = (Stock_data["Time Series (Daily)"][""\])
+    Stock_data = Stock_data["Time Series (Daily)"]
+    Stock_data = Stock_data["2023-01-31"]
     print(Stock_data)
 summaryForStock("TSLA")
 
